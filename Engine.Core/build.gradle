@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'io.github.epic.core'
+version '1.0-SNAPSHOT'
+
+mainClassName = 'io.github.epic.core.Game'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":Engine.Graphics")
+    implementation project(":Engine.Physics")
+
+    implementation 'commons-io:commons-io:2.11.0'
+}

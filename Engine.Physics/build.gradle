@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+group 'io.github.epic.physics'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(":Engine.Commons")
+}
