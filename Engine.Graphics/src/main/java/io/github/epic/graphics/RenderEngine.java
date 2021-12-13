@@ -48,4 +48,8 @@ public final class RenderEngine {
         this.projectionStrategy = projectionStrategy;
     }
 
+    public void setClearColor(float r, float g, float b) {
+        glClearColor(r, g, b, 1.f);
+    }
+
 }
