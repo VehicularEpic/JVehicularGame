@@ -1,4 +1,4 @@
-package io.github.epic.graphics.manager;
+package io.github.epic.core.registry;
 
 public interface ObjectManager<T> {
 
