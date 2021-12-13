@@ -1,6 +1,7 @@
 package io.github.epic.graphics.shader;
 
 import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL31.*;
 
 public final class Shader {
 
@@ -22,6 +23,11 @@ public final class Shader {
     public void uniformMatrix4f(String name, float[] data) {
         int location = glGetUniformLocation(program, name);
         glUniformMatrix4fv(location, false, data);
+    }
+
+    public void uniformBlock(String name, UniformBufferObject object) {
+        int index = glGetUniformBlockIndex(program, name);
+        glUniformBlockBinding(program, index, object.getIndex());
     }
 
 }
