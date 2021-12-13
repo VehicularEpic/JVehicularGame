@@ -8,9 +8,9 @@ public class Entity {
     private double y;
     private double z;
 
-    private double xy;
-    private double xz;
-    private double zy;
+    private double rotationX;
+    private double rotationY;
+    private double rotationZ;
 
     public Entity(String name) {
         this.name = name;
@@ -28,16 +28,16 @@ public class Entity {
         this.z += z;
     }
 
-    public void rotation(double xy, double xz, double zy) {
-        this.xy = Math.toRadians(xy);
-        this.xz = Math.toRadians(xz);
-        this.zy = Math.toRadians(zy);
+    public void rotation(double x, double y, double z) {
+        this.rotationX = x;
+        this.rotationY = y;
+        this.rotationZ = z;
     }
 
-    public void rotate(double xy, double xz, double zy) {
-        this.xy += xy;
-        this.xz += xz;
-        this.zy += zy;
+    public void rotate(double x, double y, double z) {
+        this.rotationX += x;
+        this.rotationY += y;
+        this.rotationZ += z;
     }
 
     public String getName() {
@@ -48,24 +48,48 @@ public class Entity {
         return x;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
     public double getY() {
         return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public double getZ() {
         return z;
     }
 
-    public double getXy() {
-        return xy;
+    public void setZ(double z) {
+        this.z = z;
     }
 
-    public double getXz() {
-        return xz;
+    public double getRotationX() {
+        return rotationX;
     }
 
-    public double getZy() {
-        return zy;
+    public void setRotationX(double rotationX) {
+        this.rotationX = rotationX;
+    }
+
+    public double getRotationY() {
+        return rotationY;
+    }
+
+    public void setRotationY(double rotationY) {
+        this.rotationY = rotationY;
+    }
+
+    public double getRotationZ() {
+        return rotationZ;
+    }
+
+    public void setRotationZ(double rotationZ) {
+        this.rotationZ = rotationZ;
     }
 
 }
