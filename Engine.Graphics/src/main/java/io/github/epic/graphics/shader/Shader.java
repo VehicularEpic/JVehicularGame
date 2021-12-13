@@ -1,6 +1,5 @@
 package io.github.epic.graphics.shader;
 
-import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL31.*;
 
 public final class Shader {

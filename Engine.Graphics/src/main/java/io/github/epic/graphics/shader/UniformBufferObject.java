@@ -1,6 +1,5 @@
 package io.github.epic.graphics.shader;
 
-import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL31.*;
 
 public class UniformBufferObject {
