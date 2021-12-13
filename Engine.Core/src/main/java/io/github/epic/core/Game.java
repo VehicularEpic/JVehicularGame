@@ -54,6 +54,7 @@ public class Game implements RenderContext {
     public void render(RenderEngine engine, ProjectionStrategy strategy, CameraView view) {
         Camera camera = view.getCamera();
         camera.translation(0.d, 10.d, -100.d);
+        camera.rotate(0, 0, 0.001);
 
         float[] projection = strategy.project(
                 window.getContentWidth(), window.getContentHeight()
