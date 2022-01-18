@@ -3,6 +3,8 @@ package io.github.epic.graphics.projection;
 import io.github.epic.commons.Camera;
 import org.joml.*;
 
+import java.lang.Math;
+
 public class CameraView {
 
     private Camera camera;
@@ -19,11 +21,21 @@ public class CameraView {
         Matrix4d matrix4d = new Matrix4d();
         matrix4d = matrix4d.translate(-camera.getX(), -camera.getY(), -camera.getZ());
 
-        matrix4d = matrix4d.rotate(camera.getRotationX(), 0.d, 0.d, 1.d);
-        matrix4d = matrix4d.rotate(camera.getRotationY(), 1.d, 0.d, 0.d);
-        matrix4d = matrix4d.rotate(camera.getRotationZ(), 0.d, 1.d, 0.d);
+        Quaterniond rotationX = new Quaterniond(
+                0.0, 0.0, Math.sin(camera.getRotationX() / 2.0), Math.cos(camera.getRotationX() / 2.0)
+        );
+        Quaterniond rotationY = new Quaterniond(
+                Math.sin(-camera.getRotationY() / 2.0), 0.0, 0.0, Math.cos(-camera.getRotationY() / 2.0)
+        );
+        Quaterniond rotationZ = new Quaterniond(
+                0.0, Math.sin(-camera.getRotationZ() / 2.0), 0.0, Math.cos(-camera.getRotationZ() / 2.0)
+        );
 
-        return matrix4d.get(new float[16]);
+        return matrix4d
+                .rotateLocal(rotationX)
+                .rotateLocal(rotationY)
+                .rotateLocal(rotationZ)
+                .get(new float[16]);
     }
 
     public Camera getCamera() {
