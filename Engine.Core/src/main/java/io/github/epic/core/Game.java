@@ -13,6 +13,7 @@ import io.github.epic.graphics.projection.CameraView;
 import io.github.epic.graphics.projection.EntityMatrix;
 import io.github.epic.graphics.projection.PerspectiveProjection;
 import io.github.epic.graphics.projection.ProjectionStrategy;
+import io.github.epic.graphics.renderer.GroundRenderer;
 import io.github.epic.graphics.shader.Shader;
 import io.github.epic.graphics.shader.ShaderBuilder;
 import io.github.epic.graphics.shader.UniformBufferObject;
@@ -24,6 +25,7 @@ public class Game implements RenderContext {
 
     private final UserWindow window;
     private final UniformBufferObject uniform = new UniformBufferObject(1, 2);
+    private final GroundRenderer groundRenderer = new GroundRenderer(uniform);
 
     private World world;
 
@@ -34,7 +36,8 @@ public class Game implements RenderContext {
     @Override
     public void init(RenderEngine engine) {
         PerspectiveProjection projection = new PerspectiveProjection();
-        projection.setFarPlane(100000.d);
+        projection.setFarPlane(10000d);
+        projection.setNearPlane(1d);
         engine.setProjectionStrategy(projection);
 
         Shader sceneShader = Managers.SHADER_MANAGER.get("scene");
@@ -46,6 +49,9 @@ public class Game implements RenderContext {
 
         float[] sky = loader.getSkyColor();
         engine.setClearColor(sky[0], sky[1], sky[2]);
+
+        float[] ground = loader.getGroundColor();
+        groundRenderer.setColor(ground[0], ground[1], ground[2]);
 
         this.world = loader.getWorld();
     }
@@ -62,6 +68,8 @@ public class Game implements RenderContext {
 
         uniform.put(0, projection);
         uniform.put(1, view.getMatrix());
+
+        groundRenderer.render();
 
         Shader sceneShader = Managers.SHADER_MANAGER.get("scene");
         sceneShader.use();
